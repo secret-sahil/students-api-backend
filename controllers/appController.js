@@ -126,7 +126,7 @@ export async function deletestudent(req, res) {
 		const { id } = req.body
 		if (!id) return res.status(401).send({ error: 'User Not Found...!' })
 
-		StudentModel.deleteOne({ _id: id })
+		StudentModel.updateOne({ _id: id }, {delete:true})
 			.exec()
 			.then(() => {
 				return StudentModel.find({delete: false}).exec()
